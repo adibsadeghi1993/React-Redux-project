@@ -1,4 +1,4 @@
-import { SELECTED_PRODUCT, SET_PRODUCTS } from "../constants/Action-types"
+import { REMOVE_SELECTED_PRODUCT, SELECTED_PRODUCT, SET_PRODUCTS } from "../constants/Action-types"
 
 
 export const setProducts=(products)=>{
@@ -13,3 +13,10 @@ export const selectedProducts=(product)=>{
         payload:product
     }
     }
+
+    export const removeSelectedProducts=()=>{
+        return {
+            type:REMOVE_SELECTED_PRODUCT,
+          
+        }
+        }
