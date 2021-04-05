@@ -1,28 +1,39 @@
 import React from "react";
-import {useSelector,useDispatch} from "react-redux"
+import {useSelector} from "react-redux"
+import {Link} from "react-router-dom"
+
+
+
 const Product = () => {
-    const state = useSelector(state => state.allProducts.products)
-    const {id,title}=state[0]
-  return (
-   
-     
-      <div className="col s12 m3">
-        <div className="card">
-          <div className="card-image">
-            <img />
-            <span className="card-title" style={{color:"black"}}>{title}</span>
+  
+  const products = useSelector(state => state.allProducts.products)
+
+  const renderList=products.map(item=>{
+    const { id,title, image, price, category } = item;
+    return (
+      <div className="four wide column" key={id}>
+        <Link to={`/product/${id}`}>
+        <div className="ui link cards">
+          <div className="card">
+            <div className="image"><img src={image}  /></div>
+            <div className="content">
+              <div className="header">{title}</div>
+              <div className="meta price">${price}</div>
+              <div className="meta">{category}</div>
+            </div>
           </div>
-          <div className="card-content">
-            <p>I am a very simple card.{id}</p>
-          </div>
-          <div className="card-action">
-          <a href="#">This is a link</a>
         </div>
-        </div>
+        </Link>
       </div>
-   
+    )
+
+  })
+  
 
 
+  return (
+     <>{renderList} </>
+    
   );
 };
 
